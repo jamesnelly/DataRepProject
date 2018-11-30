@@ -1,0 +1,72 @@
+@import '~@angular/material/prebuilt-themes/deeppurple-amber.css';
+
+
+.bg{
+    background-color: darkgray;
+    background-image: url(/assets/images/Sports23.jpg);
+    height: 100%;
+    width: 100%;
+    background-position-x: center;
+}
+
+#color{
+    background-color:crimson;
+}
+
+.mat-toolbar[_ngcontent-c2] {
+    background: #f5f5f5;
+    color: gold;
+    margin-left: 8px;
+    width: 1245px;
+    padding: 0px 550px;
+}
+
+.mat-action-row {
+    border-top-style: dashed;
+    border-top-width: 1px;
+    display: flex;
+    flex-direction: unset;
+    justify-content: center;
+}
+
+.mat-expansion-panel[_ngcontent-c5] {
+    background: chocolate;
+    text-align: center;
+    color: rgba(0,0,0,.87);
+    background-color: royalblue;
+    margin-right: 15%;
+    margin-left: 15%;
+}
+.mat-expansion-panel[_ngcontent-c2] {
+    background: royalblue;
+    margin-left: 15%;
+    margin-right: 15%;
+    color: rgba(0,0,0,.87);
+    text-align: center;
+}
+ 
+mat-expansion-panel-header {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    padding: 0px 370px;
+    border-radius: inherit;
+}
+
+.mat-card-content>:last-child:not(.mat-card-footer), .mat-card>:last-child:not(.mat-card-footer) {
+  margin-bottom: 0px;
+  margin-left: 500px;
+}
+
+.mat-card[_ngcontent-c2] {
+  color:yellow;
+  font-weight: 800;
+  background: bottom;
+  background-color: crimson;
+}
+.mat-card[_ngcontent-c7] {
+  background: #fff;
+  color: yellow;
+  background: crimson;
+  font-weight: 800;
+}

@@ -1,0 +1,44 @@
+<!-- <mat-toolbar color='primary'>Posts</mat-toolbar> -->
+<!-- <app-post-create></app-post-create>
+<app-post-details></app-post-details> -->
+<!-- <div class="button-row">
+  <a mat-raised-button color="primary" [routerLink]="['/']"><mat-icon>add</mat-icon></a>
+</div> -->
+<html>
+<body>
+  
+
+<div class="background">
+
+  <div class="button">
+      <button mat-raised-button [routerLink]="['']"><h2>Home</h2></button>
+      <button mat-raised-button [routerLink]="['/list']"><h2>List Sports Stars</h2></button>
+      <button mat-raised-button [routerLink]="['/create']"><h2>Create Sport Star Info</h2></button>
+      <br>
+      <br>
+    </div>
+  <!--
+  <div class="Buttons">
+  <mat-toolbar-row id="header">
+      <button class= "mat-button1" mat-button [routerLink]="['']"><h2>Home</h2></button>
+     
+      <button class= "mat-button2" [routerLink]="['/list']"><h2>List Sports Stars</h2></button>
+   
+      <button class= "mat-button3" [routerLink]="['/create']"><h2>Create Sport Star Info</h2></button>
+  </mat-toolbar-row> 
+  -->
+</div> 
+<br>
+</body>
+</html>
+
+
+<!--<button mat-button color="primary" [matMenuTriggerFor]="menu">Posts Menu</button>
+<mat-menu color="primary" #menu="matMenu">
+  <button color="primary" mat-menu-item [routerLink]="['/create']">Create</button>
+  <button color="primary"mat-menu-item [routerLink]="['/']">List</button>
+</mat-menu> -->
+
+
+
+<router-outlet></router-outlet>

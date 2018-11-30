@@ -1,0 +1,96 @@
+<html>
+  <head>
+    <meta name="viewport" content="width=device-width,intial-scale=1">
+  </head>
+<body>
+
+<div class = "bg">
+<mat-card>
+  <form (submit)="onAddPost(postForm)" #postForm="ngForm">
+      <p>Please enter a Sport Star Name.</p> 
+    <div class="input1">
+    <mat-form-field>
+      <input
+        matInput
+        type="text"
+        name="Name"
+        ngModel
+        required
+        minlength="3"
+        #Name="ngModel">
+    </mat-form-field>
+    </div>
+    <p>Please enter Sport Star DOB (DD-MM-YY)</p>
+    <div class="input2">
+      <mat-form-field>
+        <input
+          matInput
+          type="text"
+          name="Born"
+          ngModel
+          required
+          #Born="ngModel">
+      </mat-form-field>
+    </div>
+     
+         <p>Please enter Sport Star Height.</p>
+         <div class="input3">
+         <mat-form-field>
+        <input
+          matInput
+          type="text"
+          name="Height"
+          ngModel
+          required
+          #Height="ngModel">
+      </mat-form-field>
+    </div>
+
+      <p>Please enter Sport Star Salary.</p>
+      <div class="input4">
+        <mat-form-field>
+          <input
+            matInput
+            type="text"
+            name="Salary"
+            ngModel
+            required
+            #Salary="ngModel">
+            </mat-form-field>
+          </div>
+      
+        <p>Please enter Sport Stars type of Sport.</p>
+        <div class="input5">
+          <mat-form-field>
+            <input
+              matInput
+              type="text"
+              name="SportType"
+              ngModel
+              required
+              #SportType="ngModel">
+          </mat-form-field>
+          </div>
+          <p>Please enter an Achievement for the Sport Star.</p>     
+          <div class="input6">     
+            <mat-form-field>
+              <input
+                matInput
+                type="text"
+                name="Achievement"
+                ngModel
+                required
+                #Achievement="ngModel">
+            </mat-form-field>
+            </div>
+            <br>
+            <br>
+    <button
+      mat-raised-button
+      color="accent"
+      type="submit">Save Post</button>
+  </form>
+</mat-card>
+</div>
+</body>
+</html>

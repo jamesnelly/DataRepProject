@@ -1,0 +1,21 @@
+
+<div class= "bg">
+<mat-toolbar id="color">List of Sport Stars</mat-toolbar>
+<mat-accordion multi="true" *ngIf="posts.length > 0">
+  <mat-expansion-panel [expanded]="true" *ngFor="let post of posts">
+          <mat-expansion-panel-header>
+         <h4>Mr {{ post.Name }}</h4>
+          </mat-expansion-panel-header>
+        <p>&nbsp;{{ post.Born }}&nbsp;</p>
+        <p>&nbsp;{{ post.Height }}&nbsp;</p>
+        <p>&nbsp;€: {{ post.Salary }}&nbsp;</p>
+        <p>&nbsp;{{ post.SportType }}&nbsp;</p>
+        <p>&nbsp;{{ post.Achievement }}&nbsp;</p> 
+    <mat-action-row>
+      <button mat-button [routerLink]="['/edit', post._id]" color="primary">EDIT</button>
+      <button mat-button (click)="onDelete(post._id)" color="warn">DELETE</button>
+    </mat-action-row>
+  </mat-expansion-panel>
+</mat-accordion>
+<p class="info-text mat-body-1" *ngIf="posts.length <= 0">No posts added yet!</p> 
+</div>

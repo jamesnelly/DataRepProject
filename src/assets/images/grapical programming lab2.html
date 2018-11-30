@@ -1,0 +1,219 @@
+<!DOCTYPE html>
+
+<html>
+<script src="https://code.jquery.com/jquery-3.1.0.min.js"></script>
+
+<head>
+	<meta charset="UTF-8">
+	<title>Canvas</title>
+
+	<style type="text/css">
+		canvas {
+			border-style: solid;
+			border-width: 5px 5px 5px 5px;
+		}
+	</style>
+</head>
+<h1>james</h1>
+
+<body>
+	<canvas id="canvasOne" width="300" height="300"></canvas>
+
+	<script type="text/javascript">
+
+		// Gets a handle to the element with id canvasOne.
+		var canvas = document.getElementById("canvasOne");
+		// Set the canvas up for drawing in 2D.
+		var ctx = canvas.getContext("2d");
+		// Set the fill colour to bright red.
+
+		// ball constructor class
+		class Ball {
+			constructor(x, y, r, xspeed, yspeed, Mass, color) {
+				this.x = x;
+				this.y = y;
+				this.r = r;
+				this.xspeed = xspeed;
+				this.yspeed = yspeed;
+				this.Mass = Mass;
+				this.color = colorBall();
+			}
+			
+				//making ball the two different balls
+				makeBall() {
+				ctx.beginPath();
+				ctx.lineTo(this.x, this.y);
+				ctx.arc(this.x, this.y, this.r, (3 * Math.PI) / 4, Math.PI / 2);
+				ctx.fillStyle = this.color;
+				ctx.lineTo(this.x, this.y);
+				ctx.moveTo(this.x, this.y);
+				ctx.arc(this.x, this.y, this.r, Math.PI / 4, 2 * Math.PI);
+				ctx.moveTo(this.x, this.y);
+				ctx.lineTo(this.x, this.y);
+				ctx.arc(this.x, this.y, this.r, 2 * Math.PI, (7 * Math.PI) / 4);
+				ctx.lineTo(this.x, this.y);
+				ctx.moveTo(this.x, this.y);
+				ctx.arc(this.x, this.y, this.r, (7 * Math.PI) / 4, (3 * Math.PI) / 2);
+				ctx.lineTo(this.x, this.y);
+				ctx.moveTo(this.x, this.y);
+				ctx.arc(this.x, this.y, this.r, (3 * Math.PI) / 2, (5 * Math.PI) / 4);
+				ctx.lineTo(this.x, this.y);
+				ctx.moveTo(this.x, this.y);
+				ctx.arc(this.x, this.y, this.r, (5 * Math.PI) / 4, Math.PI);
+				ctx.lineTo(this.x, this.y);
+				ctx.fill();
+				ctx.stroke();
+			}
+			
+
+			MoveBall() {
+
+				window.addEventListener("keypress", function (event) {
+					// Just log the event to the console.
+					console.log(event);
+				});
+				if (this.y >= canvas.height - this.r || this.y <= 0 + this.r) {
+					this.yspeed = - this.yspeed;
+				}
+				if (this.x >= canvas.width - this.r || this.x <= 0 + this.r) {
+					this.xspeed = - this.xspeed;
+				}
+				this.x += this.xspeed;
+				this.y += this.yspeed;
+			}
+			
+			
+		}
+		let ball1 = new Ball(50, 150, 40, 1, 1, 2);
+		let ball2 = new Ball(100, 200, 20, 1, 1, 1);
+		
+		function repeatme() {
+
+			ctx.clearRect(0, 0, 300, 300);
+			
+			ball1.makeBall();
+			ball1.MoveBall();
+
+			ball2.makeBall();
+			ball2.MoveBall();
+
+			 test2dCollision();
+			window.requestAnimationFrame(repeatme);
+		};
+
+		// Get the animation going.
+		repeatme();
+
+		canvas.addEventListener("click", function (event) {
+			ball1.x = event.clientX - canvas.offsetLeft;
+			ball1.y = event.clientY - canvas.offsetTop;
+		});
+
+		$(document.body).on('keydown', function (e) {
+			console.log(e.which);
+			switch (e.which) {
+				// key code for left arrow
+				case 37:
+					ball1.xspeed = ball1.xspeed - 1;
+					break;
+
+				// Key code for down arrow
+				case 40:
+					ball1.yspeed += 1;
+					break;
+
+				// key code for up arrow
+				case 38:
+					ball1.yspeed = ball1.yspeed - 1;
+					break;
+
+				// Key code for right arrow
+				case 39:
+					ball1.xspeed += 1;
+					break;
+					
+				//B key code for making ball 1 bigger
+				case 66:
+				ball1.r +=1;
+				if(ball1.r == 55){
+				ball1.r -=1;
+				}
+				break;
+				// c KEy make ball 1 smaller
+				case 83:
+				ball1.r = ball1.r - 1;
+				if(ball1.r == 5){
+				ball1.r += 1;
+				}
+				break;
+			}
+		});
+			 
+					
+			function colorBall() {
+			
+				  var r = Math.floor(Math.random() * 256);
+				  var g = Math.floor(Math.random() * 256);
+				  var b = Math.floor(Math.random() * 256);
+				  var rgbColor = "rgb(" + r + "," + g + "," + b + ")";
+				  return rgbColor;
+				  }
+			
+			colorBall();
+		
+			function test2dCollision() {
+			let distanceBetweenBalls = Math.sqrt(((ball2.x - ball1.x) * (ball2.x - ball1.x)) + ((ball2.y - ball1.y) * (ball2.y - ball1.y)));
+			let sumOfRadius = (ball1.r + ball2.r);
+
+				//if collision detected 
+			if(distanceBetweenBalls <= sumOfRadius){
+			
+			
+				console.log("Collision\ndistance between balls:"+distanceBetweenBalls+"\nsum of radius: "+ sumOfRadius);
+			//Calculate horizontal distance between balls
+				let	x = ball1.x - ball2.x;	
+				let	y = ball1.y - ball2.y;
+			//changing colors of the basll on collision
+				ball1.color = colorBall();
+				ball2.color = colorBall();
+			
+			
+			//c1 = ball1.color;
+			
+			//Calculate vertical between balls
+			let collision_angle = Math.atan2(y, x);
+			//Calculate the collision angle using trig 
+			//Calculate the balll speed, here called the Magnitude
+			let magnitude_l = Math.sqrt(ball1.xspeed * ball1.xspeed + ball1.yspeed * ball1.yspeed);
+			// Calculate the ball2 speed in the same way
+			let magnitude_2 = Math.sqrt(ball2.xspeed * ball2.xspeed + ball2.yspeed * ball2.yspeed);
+			//Determine balls' direction using trigonometry
+			let direction_l = Math.atan2(ball1.yspeed, ball1.xspeed); 
+			let direction_2 = Math.atan2(ball2.yspeed, ball2.xspeed);
+			//Calculate new xVel using trigonometry applied to the difference between the direction angle and the collision angle 
+			let new_xVel_l = magnitude_l * Math.cos(direction_l-collision_angle);
+			//Same thing for other vectors: ball 1 yVel and ball 2 xVel and yVel
+			let new_yVel_l = magnitude_l * Math.sin(direction_l-collision_angle); 
+			let new_xVel_2 = magnitude_2 * Math.cos(direction_2-collision_angle); 
+			let new_yVel_2 = magnitude_2 * Math.sin(direction_2-collision_angle);
+			
+		
+			//Determine final x speed for ball 1
+			let final_xVel_l = ((ball1.Mass - ball2.Mass) * new_xVel_l + (ball2.Mass+ball2.Mass) * new_xVel_2)/(ball1.Mass + ball2.Mass);
+			//Determine final y speed for ball 2
+			let final_xVel_2 = ((ball1.Mass + ball1.Mass) * new_xVel_l + (ball2.Mass - ball1.Mass)* new_xVel_2)/(ball1.Mass + ball2.Mass);
+			let final_yVel_l = new_yVel_l; 
+			let final_yVel_2 = new_yVel_2;
+			//y speed does not changes (it's a ID collision) final_yVel_l = new_yVel_l; final_yVel_2 = new_yVel_2;
+			//Determine x and y speeds on the original axis system using trig. Math.PI/2 is used because the angle between xVel and yVel must
+			ball1.xspeed = Math.cos(collision_angle)*final_xVel_l+Math.cos(collision_angle+Math.PI/2)*final_yVel_l;
+			ball1.yspeed = Math.sin(collision_angle)*final_xVel_l+Math.sin(collision_angle+Math.PI/2)*final_yVel_l; 
+			ball2.xspeed = Math.cos(collision_angle)*final_xVel_2+Math.cos(collision_angle+Math.PI/2)*final_yVel_2; 
+			ball2.yspeed = Math.sin(collision_angle)*final_xVel_2+Math.sin(collision_angle+Math.PI/2)*final_yVel_2;
+			}
+		}
+	</script>
+
+</body>
+
+</html>
